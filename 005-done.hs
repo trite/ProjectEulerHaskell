@@ -3,10 +3,29 @@
 evenlyDivides :: Int -> Int -> Bool
 evenlyDivides x y = x `mod` y == 0
 
--- >>> map ([3,5,7] `listEvenlyDivides`) [15,25,35,45]
--- [False,False,False,False]
+-- >>> map ([3,5,7] `listEvenlyDivides`) [85,95..125]
+-- [False,False,True,False,False]
 listEvenlyDivides :: [Int] -> Int -> Bool
 listEvenlyDivides ys x = all (x `evenlyDivides`) ys
+
+range' = [2..10]
+increment' = 10*9
+generator' = [increment',increment'*2..]
+result' = take 1 [x | x <- generator', listEvenlyDivides range' x]
+-- >>> result'
+-- [2520]
+
+range = [2..20]
+increment = 20*19*18
+generator = [increment,increment*2..]
+result = take 1 [x | x <- generator, listEvenlyDivides range x]
+-- >>> result
+-- [232792560]
+
+
+
+
+
 
 
 
@@ -32,14 +51,14 @@ listEvenlyDivides ys x = all (x `evenlyDivides`) ys
 3.5
 -}
 
-fDiv :: Int -> Int -> Float
-x `fDiv` y = fromIntegral x / fromIntegral y
+-- fDiv :: Int -> Int -> Float
+-- x `fDiv` y = fromIntegral x / fromIntegral y
 
-ans :: Int
-ans = 232792560
+-- ans :: Int
+-- ans = 232792560
 
-test :: [Int]
-test = [20*19*18,19*18*17,18*17*16,20*19*18*17*16*15]
+-- test :: [Int]
+-- test = [20*19*18,19*18*17,18*17*16,20*19*18*17*16*15]
 {-
 >>> map (ans `fDiv`) [1..20]
 [2.3279256e8,1.1639628e8,7.759752e7,5.819814e7,4.6558512e7,3.879876e7,3.325608e7,2.909907e7,2.586584e7,2.3279256e7,2.116296e7,1.939938e7,1.790712e7,1.662804e7,1.5519504e7,1.4549535e7,1.369368e7,1.293292e7,1.225224e7,1.1639628e7]
